@@ -15,12 +15,10 @@ router.get('/', (req, res) => {
       },
       {
         model: Tag,
-        attributes: ['id', 'tag_name']
+        attributes: ['id', 'tag_name'],
+        through: ProductTag,
+        as: 'tags'
       },
-      {
-        model: ProductTag,
-        attributes: ['id', 'product_id', 'tag_id']
-      }
     ]
   })
     .then(dbProductData => res.json(dbProductData))
@@ -45,12 +43,10 @@ router.get('/:id', (req, res) => {
       },
       {
         model: Tag,
-        attributes: ['id', 'tag_name']
+        attributes: ['id', 'tag_name'],
+        through: ProductTag,
+        as: 'tags'
       },
-      {
-        model: ProductTag,
-        attributes: ['id', 'product_id', 'tag_id']
-      }
     ]
   })
     .then(dbProductData => {
